@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\BaseBuilder.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{A46B2353-A45B-4070-858F-CDB332DF7E94}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\BaseBuilder.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\BaseBuilderEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{7542AF3C-B420-4143-AF37-2E4FB2A720E9}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\BaseBuilder">
+			<UniqueIdentifier>{07E3A854-2257-46D8-A829-6FAA7DB0DC61}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\BaseBuilder\BaseBuilder.Build.cs">
+			<Filter>Source\BaseBuilder</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\BaseBuilder\BaseBuilder.cpp">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\BaseBuilder\BaseBuilder.h">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\BaseBuilder\BaseBuilderCharacter.cpp">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\BaseBuilder\BaseBuilderCharacter.h">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\BaseBuilder\BaseBuilderGameMode.cpp">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\BaseBuilder\BaseBuilderGameMode.h">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\BaseBuilder\BaseBuilderPlayerController.cpp">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\BaseBuilder\BaseBuilderPlayerController.h">
+			<Filter>Source\BaseBuilder</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>

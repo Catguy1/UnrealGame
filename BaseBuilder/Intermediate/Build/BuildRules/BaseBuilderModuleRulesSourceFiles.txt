@@ -1,0 +1,3 @@
+C:\Users\frede_000\Documents\UnrealGame\BaseBuilder\Source\BaseBuilder\BaseBuilder.Build.cs
+C:\Users\frede_000\Documents\UnrealGame\BaseBuilder\Source\BaseBuilder.Target.cs
+C:\Users\frede_000\Documents\UnrealGame\BaseBuilder\Source\BaseBuilderEditor.Target.cs
