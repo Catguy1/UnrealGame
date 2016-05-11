@@ -64,4 +64,6 @@ void ABaseBuilderCharacter::Tick(float DeltaSeconds)
 			CursorToWorld->SetWorldRotation(CursorR);
 		}
 	}
+
+
 }

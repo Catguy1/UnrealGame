@@ -19,6 +19,10 @@ void ABaseBuilderPlayerController::PlayerTick(float DeltaTime)
 	{
 		MoveToMouseCursor();
 	}
+
+	FVector MoveVector = FVector(GetInputAxisValue("MoveForward") * 10, GetInputAxisValue("MoveRight") * 10, 0);
+
+	GetPawn()->SetActorLocation(GetPawn()->GetActorLocation() + MoveVector);
 }
 
 void ABaseBuilderPlayerController::SetupInputComponent()
@@ -29,9 +33,8 @@ void ABaseBuilderPlayerController::SetupInputComponent()
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ABaseBuilderPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &ABaseBuilderPlayerController::OnSetDestinationReleased);
 
-	// support touch devices 
-	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ABaseBuilderPlayerController::MoveToTouchLocation);
-	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ABaseBuilderPlayerController::MoveToTouchLocation);
+	InputComponent->BindAxis("MoveForward");
+	InputComponent->BindAxis("MoveRight");
 }
 
 void ABaseBuilderPlayerController::MoveToMouseCursor()
@@ -44,20 +47,6 @@ void ABaseBuilderPlayerController::MoveToMouseCursor()
 	{
 		// We hit something, move there
 		SetNewMoveDestination(Hit.ImpactPoint);
-	}
-}
-
-void ABaseBuilderPlayerController::MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	FVector2D ScreenSpaceLocation(Location);
-
-	// Trace to see what is under the touch location
-	FHitResult HitResult;
-	GetHitResultAtScreenPosition(ScreenSpaceLocation, CurrentClickTraceChannel, true, HitResult);
-	if (HitResult.bBlockingHit)
-	{
-		// We hit something, move there
-		SetNewMoveDestination(HitResult.ImpactPoint);
 	}
 }
 
@@ -75,6 +64,12 @@ void ABaseBuilderPlayerController::SetNewMoveDestination(const FVector DestLocat
 			NavSys->SimpleMoveToLocation(this, DestLocation);
 		}
 	}
+
+	FTransform location = FTransform(DestLocation);
+
+
+		GetWorld()->SpawnActor<ABaseBuilding>(DestLocation, FRotator(0));
+
 }
 
 void ABaseBuilderPlayerController::OnSetDestinationPressed()

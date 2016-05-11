@@ -1,5 +1,6 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 #pragma once
+#include "BaseBuilding.h"
 #include "GameFramework/PlayerController.h"
 #include "BaseBuilderPlayerController.generated.h"
 
@@ -10,6 +11,9 @@ class ABaseBuilderPlayerController : public APlayerController
 
 public:
 	ABaseBuilderPlayerController();
+
+	UPROPERTY(EditAnywhere)
+	AActor *ItemToPlace;
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -22,9 +26,6 @@ protected:
 
 	/** Navigate player to the current mouse cursor location. */
 	void MoveToMouseCursor();
-
-	/** Navigate player to the current touch location. */
-	void MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location);
 	
 	/** Navigate player to the given world location. */
 	void SetNewMoveDestination(const FVector DestLocation);
