@@ -26,6 +26,8 @@ protected:
 
 	/** Navigate player to the current mouse cursor location. */
 	void MoveToMouseCursor();
+
+	void OnClick();
 	
 	/** Navigate player to the given world location. */
 	void SetNewMoveDestination(const FVector DestLocation);

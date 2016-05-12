@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
 #include "GameFramework/Pawn.h"
 #include "BasePawn.generated.h"
 
@@ -26,4 +25,10 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	AActor* Target;
+
+	UPROPERTY(Category = Meshes, VisibleAnywhere)
+		UStaticMeshComponent *CubeMesh;
+
+	UPROPERTY(VisibleAnywhere)
+	UPawnMovementComponent *MoveComponent;
 };
