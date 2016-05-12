@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+#include "Engine/BlueprintGeneratedClass.h"
 #include "GameFramework/Actor.h"
 #include "BaseBuilding.generated.h"
 
@@ -20,6 +20,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
+	void Spawn();
+
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
+
+private:
+	float Timer;
+	UPROPERTY(EditAnywhere)
+	float SpawnTime;
 };

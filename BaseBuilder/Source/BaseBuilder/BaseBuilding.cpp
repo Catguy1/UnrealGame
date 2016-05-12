@@ -2,15 +2,16 @@
 
 #include "BaseBuilder.h"
 #include "BaseBuilding.h"
+#include "BasePawn.h"
 
 
 // Sets default values
 ABaseBuilding::ABaseBuilding()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	CubeMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("Box"));
-	
+
 	static ConstructorHelpers::FObjectFinder <UStaticMesh>StaticMesh(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'"));
 
 	CubeMesh->SetStaticMesh(StaticMesh.Object);
@@ -18,19 +19,41 @@ ABaseBuilding::ABaseBuilding()
 	CubeMesh->bHiddenInGame = false;
 
 	RootComponent = CubeMesh;
+
+	SpawnTime = 5;
+
+	Timer = SpawnTime;
 }
 
 // Called when the game starts or when spawned
 void ABaseBuilding::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
-void ABaseBuilding::Tick( float DeltaTime )
+void ABaseBuilding::Tick(float DeltaTime)
 {
-	Super::Tick( DeltaTime );
+	Super::Tick(DeltaTime);
 
+	if (Timer <= 0)
+	{
+		Spawn();
+		Timer = SpawnTime;
+	}
+	else
+	{
+		Timer -= DeltaTime;
+	}
+}
+
+void ABaseBuilding::Spawn()
+{
+	/*FActorSpawnParameters SpawnParameter;
+	SpawnParameter.Owner = this;
+	SpawnParameter.Instigator = Instigator;*/
+
+	GetWorld()->SpawnActor<APawn>(ABasePawn::StaticClass(), GetActorLocation() + FVector(100,100,100), GetActorRotation());
 }
 
