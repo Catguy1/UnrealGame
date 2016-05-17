@@ -27,6 +27,9 @@ public:
 	void TargetEnemies();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FVector HitRange;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Health;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -34,10 +37,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Damage;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float AttackTimer;
 
 private:
 
-	float AttackTimer;
+
 
 	virtual void Attack();
 };
