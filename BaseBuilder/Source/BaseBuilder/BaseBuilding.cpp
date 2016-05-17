@@ -22,6 +22,13 @@ ABaseBuilding::ABaseBuilding()
 
 	RootComponent = CubeMesh;
 
+	static ConstructorHelpers::FClassFinder<ABasePawn>ObjectToSpawn(TEXT("Blueprint'/Game/TopDownCPP/Blueprints/BPBasePawn'"));
+
+	if (ObjectToSpawn.Class)
+	{
+		SpawnPawn = (UClass*)ObjectToSpawn.Class;
+	}
+
 	SpawnTime = 5;
 
 	Timer = SpawnTime;
@@ -56,6 +63,10 @@ void ABaseBuilding::Spawn()
 	SpawnParameter.Owner = this;
 	SpawnParameter.Instigator = Instigator;*/
 
-	GetWorld()->SpawnActor<APawn>(ABasePawn::StaticClass(), GetActorLocation() + FVector(100, 100, 100), GetActorRotation());
+	ABasePawn *spawn = GetWorld()->SpawnActor<ABasePawn>(SpawnPawn, GetActorLocation() + FVector(100, 100, 100), GetActorRotation());
+
+	ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
+
+	spawn->Initialize(controller->EnemyBase);
 }
 

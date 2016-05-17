@@ -14,7 +14,7 @@ void ABaseBuilderPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 
-	FVector MoveVector = FVector(GetInputAxisValue("MoveForward") * 200, GetInputAxisValue("MoveRight") * 200, 0);
+	FVector MoveVector = FVector(GetInputAxisValue("MoveForward") * 500, GetInputAxisValue("MoveRight") * 500, 0);
 
 	GetPawn()->SetActorLocation(GetPawn()->GetActorLocation() + (MoveVector*DeltaTime));
 

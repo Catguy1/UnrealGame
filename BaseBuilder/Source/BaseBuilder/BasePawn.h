@@ -19,6 +19,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
+	void Initialize(AActor *destination);
+
 	// Called to bind functionality to input
 
 	void SetNewMoveDestination(const AActor* DestActor);

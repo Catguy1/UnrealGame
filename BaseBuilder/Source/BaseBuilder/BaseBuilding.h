@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "BaseBuilderPlayerController.h"
 #include "Engine/BlueprintGeneratedClass.h"
 #include "GameFramework/Actor.h"
 #include "BaseBuilding.generated.h"
@@ -28,5 +29,8 @@ public:
 private:
 	float Timer;
 	UPROPERTY(EditAnywhere)
-	float SpawnTime;
+		float SpawnTime;
+
+	UPROPERTY(VisibleAnywhere)
+		TSubclassOf<APawn> SpawnPawn;
 };
