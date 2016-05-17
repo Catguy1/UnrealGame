@@ -30,7 +30,7 @@ ABasePawn::ABasePawn()
 	CubeMesh->BodyInstance.bLockYRotation = true;
 
 	//MoveComponent = CreateDefaultSubobject<UPawnMovementComponent>(TEXT("MoveComponent"));
-	
+
 	//MoveComponent->UpdatedComponent = RootComponent;
 }
 
@@ -46,6 +46,11 @@ void ABasePawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	SetNewMoveDestination(Target);
+}
+
+void ABasePawn::Initialize(AActor *destination)
+{
+	Target = destination;
 }
 
 void ABasePawn::SetNewMoveDestination(const AActor* DestActor)
