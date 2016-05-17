@@ -13,7 +13,19 @@ public:
 	ABaseBuilderPlayerController();
 
 	UPROPERTY(EditAnywhere)
-	AActor *ItemToPlace;
+		AActor *ItemToPlace;
+
+	UPROPERTY(VisibleAnywhere)
+		float Money;
+
+	UPROPERTY(VisibleAnywhere)
+		int Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor *OwnBase;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor *EnemyBase;
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -24,17 +36,7 @@ protected:
 	virtual void SetupInputComponent() override;
 	// End PlayerController interface
 
-	/** Navigate player to the current mouse cursor location. */
-	void MoveToMouseCursor();
-
 	void OnClick();
-	
-	/** Navigate player to the given world location. */
-	void SetNewMoveDestination(const FVector DestLocation);
-
-	/** Input handlers for SetDestination action. */
-	void OnSetDestinationPressed();
-	void OnSetDestinationReleased();
 };
 
 
