@@ -18,6 +18,8 @@ ABaseBuilding::ABaseBuilding()
 
 	CubeMesh->bHiddenInGame = false;
 
+	CubeMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 	RootComponent = CubeMesh;
 
 	SpawnTime = 5;
@@ -54,6 +56,6 @@ void ABaseBuilding::Spawn()
 	SpawnParameter.Owner = this;
 	SpawnParameter.Instigator = Instigator;*/
 
-	GetWorld()->SpawnActor<APawn>(ABasePawn::StaticClass(), GetActorLocation() + FVector(100,100,100), GetActorRotation());
+	GetWorld()->SpawnActor<APawn>(ABasePawn::StaticClass(), GetActorLocation() + FVector(100, 100, 100), GetActorRotation());
 }
 
