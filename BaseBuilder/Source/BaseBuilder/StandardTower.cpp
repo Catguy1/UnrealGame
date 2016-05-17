@@ -9,22 +9,14 @@ AStandardTower::AStandardTower()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	/*CubeMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("Box"));
 
-	static ConstructorHelpers::FObjectFinder <UStaticMesh>StaticMesh(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'"));
-
-	CubeMesh->SetStaticMesh(StaticMesh.Object);
-
-	CubeMesh->bHiddenInGame = false;
-
-	RootComponent = CubeMesh;*/
+	
 }
 
 // Called when the game starts or when spawned
 void AStandardTower::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
@@ -58,9 +50,9 @@ float AStandardTower::TakeDamage(float Damage, struct FDamageEvent const& Damage
 
 void AStandardTower::Attack()
 {
-	FVector StartPoint = FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z + 90);
+	FVector StartPoint = FVector(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
 
-	FRotator Rotation = FRotator(GetActorRotation().Pitch, GetActorRotation().Yaw + 90, GetActorRotation().Roll);
+	FRotator Rotation = FRotator(GetActorRotation().Pitch, GetActorRotation().Yaw, GetActorRotation().Roll);
 
 	FVector EndPoint = StartPoint + (Rotation.Vector() * 200);
 
@@ -83,4 +75,9 @@ void AStandardTower::Attack()
 
 		}
 	}
+}
+
+void AStandardTower::TargetEnemies()
+{
+
 }

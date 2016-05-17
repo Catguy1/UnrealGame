@@ -6,24 +6,25 @@
 #include "StandardTower.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BASEBUILDER_API AStandardTower : public ABaseBuilding
 {
 	GENERATED_BODY()
-	
+
 public:
 	// Sets default values for this actor's properties
 	AStandardTower();
-
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
-	
+
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+
+	void TargetEnemies();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Health;
@@ -33,6 +34,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Damage;
+
 private:
 
 	float AttackTimer;

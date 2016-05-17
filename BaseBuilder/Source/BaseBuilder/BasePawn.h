@@ -15,20 +15,20 @@ public:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
+
 	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
+	virtual void Tick(float DeltaSeconds) override;
 
 	// Called to bind functionality to input
 
 	void SetNewMoveDestination(const AActor* DestActor);
 
 	UPROPERTY(EditAnywhere)
-	AActor* Target;
+		AActor* Target;
 
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
-	UPROPERTY(VisibleAnywhere)
-	UPawnMovementComponent *MoveComponent;
+	//UPROPERTY(VisibleAnywhere)
+	//	UPawnMovementComponent *MoveComponent;
 };

@@ -29,8 +29,8 @@ ABasePawn::ABasePawn()
 	CubeMesh->BodyInstance.bLockXRotation = true;
 	CubeMesh->BodyInstance.bLockYRotation = true;
 
-	MoveComponent = CreateDefaultSubobject<UPawnMovementComponent>(TEXT("MoveComponent"));
-
+	//MoveComponent = CreateDefaultSubobject<UPawnMovementComponent>(TEXT("MoveComponent"));
+	
 	//MoveComponent->UpdatedComponent = RootComponent;
 }
 
