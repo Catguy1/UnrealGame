@@ -29,6 +29,9 @@ ABasePawn::ABasePawn()
 	CubeMesh->BodyInstance.bLockXRotation = true;
 	CubeMesh->BodyInstance.bLockYRotation = true;
 
+	Health = 15;
+
+
 	//MoveComponent = CreateDefaultSubobject<UPawnMovementComponent>(TEXT("MoveComponent"));
 
 	//MoveComponent->UpdatedComponent = RootComponent;
@@ -38,7 +41,6 @@ ABasePawn::ABasePawn()
 void ABasePawn::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
@@ -48,9 +50,11 @@ void ABasePawn::Tick(float DeltaTime)
 	SetNewMoveDestination(Target);
 }
 
-void ABasePawn::Initialize(AActor *destination)
+void ABasePawn::Initialize(AActor *destination, int initFaction)
 {
 	Target = destination;
+
+	Faction = initFaction;
 }
 
 void ABasePawn::SetNewMoveDestination(const AActor* DestActor)
@@ -76,4 +80,24 @@ void ABasePawn::SetNewMoveDestination(const AActor* DestActor)
 	}
 	else
 		UE_LOG(LogTemp, Warning, TEXT("No Target"));
+}
+
+float ABasePawn::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	if (DamageCauser->GetClass() != GetClass())
+	{
+		const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+		if (ActualDamage > 0.f)
+		{
+			Health -= ActualDamage;
+		}
+
+		return ActualDamage;
+	}
+	return 0;
+}
+
+void ABasePawn::OnDeath()
+{
+	GetWorld()->RemoveActor(this, false);
 }

@@ -33,4 +33,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TSubclassOf<APawn> SpawnPawn;
+
+protected:
+	bool Spawning;
 };

@@ -19,11 +19,17 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
-	void Initialize(AActor *destination);
+	void Initialize(AActor *destination, int faction);
 
-	// Called to bind functionality to input
+	UPROPERTY(BlueprintReadWrite)
+		int Faction;
 
+private:
 	void SetNewMoveDestination(const AActor* DestActor);
+
+	float TakeDamage(float Damage, FDamageEvent const & DamageEvent, AController * EventInstigator, AActor * DamageCauser);
+
+	void OnDeath();
 
 	UPROPERTY(EditAnywhere)
 		AActor* Target;
@@ -31,6 +37,7 @@ public:
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
-	//UPROPERTY(VisibleAnywhere)
-	//	UPawnMovementComponent *MoveComponent;
+	float Health;
+
+
 };
