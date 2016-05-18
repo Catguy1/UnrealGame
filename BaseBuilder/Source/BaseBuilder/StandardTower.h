@@ -24,10 +24,9 @@ public:
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 
-	void TargetEnemies();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FVector HitRange;
+		APawn* Target;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Health;
@@ -37,12 +36,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Damage;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float AttackTimer;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool Firing;
+
 private:
-
-
-
 	virtual void Attack();
 };
