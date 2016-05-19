@@ -31,6 +31,17 @@ void UFactoryComponent::TickComponent( float DeltaTime, ELevelTick TickType, FAc
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
-	// ...
+	if (Timer > 1)
+	{
+		ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetOwner()->GetWorld()->GetFirstPlayerController());
+
+		controller->Money += 5;
+
+		Timer = 0;
+	}
+	else
+	{
+		Timer += DeltaTime;
+	}
 }
 
