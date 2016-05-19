@@ -43,6 +43,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool Firing;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool SpottedPawn;
+
 private:
 	virtual void Attack();
 };

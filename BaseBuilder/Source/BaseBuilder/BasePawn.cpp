@@ -91,7 +91,10 @@ float ABasePawn::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent
 		{
 			Health -= ActualDamage;
 		}
-
+		if (Health <= 0)
+		{
+			OnDeath();
+		}
 		return ActualDamage;
 	}
 	return 0;
@@ -99,5 +102,6 @@ float ABasePawn::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent
 
 void ABasePawn::OnDeath()
 {
-	GetWorld()->RemoveActor(this, false);
+	Faction = 0;
+	GetWorld()->DestroyActor(this);
 }

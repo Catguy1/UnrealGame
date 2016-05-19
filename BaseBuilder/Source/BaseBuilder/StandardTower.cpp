@@ -59,5 +59,6 @@ void AStandardTower::Attack()
 
 		AttackTimer = AttackSpeed;
 		Firing = false;
-	}	
+		//SpottedPawn = false;
+	}
 }
