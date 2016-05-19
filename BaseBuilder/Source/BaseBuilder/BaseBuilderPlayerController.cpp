@@ -13,12 +13,6 @@ ABaseBuilderPlayerController::ABaseBuilderPlayerController()
 void ABaseBuilderPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
-
-	FVector MoveVector = FVector(GetInputAxisValue("MoveForward") * 500, GetInputAxisValue("MoveRight") * 500, 0);
-
-	GetPawn()->SetActorLocation(GetPawn()->GetActorLocation() + (MoveVector*DeltaTime));
-
-	Money += DeltaTime;
 }
 
 void ABaseBuilderPlayerController::SetupInputComponent()
@@ -27,9 +21,6 @@ void ABaseBuilderPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ABaseBuilderPlayerController::OnClick);
-
-	InputComponent->BindAxis("MoveForward");
-	InputComponent->BindAxis("MoveRight");
 }
 
 void ABaseBuilderPlayerController::OnClick()
@@ -40,7 +31,7 @@ void ABaseBuilderPlayerController::OnClick()
 
 	if (Hit.GetActor() != nullptr)
 	{
-		if (!Hit.GetActor()->IsA(ABaseBuilding::StaticClass()))
+		if (Hit.GetComponent()->ComponentHasTag("PlayerArea") && Hit.GetActor()->StaticClass() != ABaseBuilding::StaticClass())
 		{
 			GetWorld()->SpawnActor<ABaseBuilding>(Hit.ImpactPoint - FVector(0, 0, -50), FRotator(0));
 		}

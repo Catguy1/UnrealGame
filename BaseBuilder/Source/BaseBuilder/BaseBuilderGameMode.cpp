@@ -4,6 +4,7 @@
 #include "BaseBuilderGameMode.h"
 #include "BaseBuilderPlayerController.h"
 #include "BaseBuilderCharacter.h"
+#include "GameHud.h"
 
 ABaseBuilderGameMode::ABaseBuilderGameMode()
 {
@@ -16,4 +17,6 @@ ABaseBuilderGameMode::ABaseBuilderGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	HUDClass = AGameHUD::StaticClass();
 }

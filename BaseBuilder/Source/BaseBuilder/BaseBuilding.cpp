@@ -20,7 +20,7 @@ ABaseBuilding::ABaseBuilding()
 
 		CubeMesh->bHiddenInGame = false;
 
-		CubeMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		CubeMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 
 		RootComponent = CubeMesh;
 	}
