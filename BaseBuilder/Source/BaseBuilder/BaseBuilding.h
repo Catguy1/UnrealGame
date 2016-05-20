@@ -29,6 +29,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		int TeamID;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Health;
+
 	UPROPERTY(EditAnywhere)
 		int Price;
 
@@ -41,6 +44,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TSubclassOf<APawn> SpawnPawn;
+
+	void OnDeath();
+
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
 
 protected:
 	UPROPERTY(EditAnywhere)

@@ -33,22 +33,6 @@ void AStandardTower::Tick(float DeltaTime)
 	}
 }
 
-float AStandardTower::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
-{
-	if (DamageCauser->GetClass() != GetClass())
-	{
-		const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
-		if (ActualDamage > 0.f)
-		{
-			Health -= ActualDamage;
-		}
-
-		return ActualDamage;
-	}
-	return 0;
-}
-
-
 void AStandardTower::Attack()
 {
 	if (Target != NULL)
@@ -60,6 +44,5 @@ void AStandardTower::Attack()
 
 		AttackTimer = AttackSpeed;
 		Firing = false;
-		//SpottedPawn = false;
 	}
 }

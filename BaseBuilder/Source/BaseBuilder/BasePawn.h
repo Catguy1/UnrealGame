@@ -56,4 +56,5 @@ private:
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
+	virtual void Attack();
 };

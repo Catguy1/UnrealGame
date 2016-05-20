@@ -64,6 +64,29 @@ void ABaseBuilding::Tick(float DeltaTime)
 	}
 }
 
+float ABaseBuilding::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser)
+{
+	if (DamageCauser->GetClass() != GetClass())
+	{
+		const float ActualDamage = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
+		if (ActualDamage > 0.f)
+		{
+			Health -= ActualDamage;
+		}
+		if (Health <= 0)
+		{
+			OnDeath();
+		}
+		return ActualDamage;
+	}
+	return 0;
+}
+
+void ABaseBuilding::OnDeath()
+{
+	GetWorld()->DestroyActor(this);
+}
+
 void ABaseBuilding::Spawn()
 {
 	ABasePawn *spawn = GetWorld()->SpawnActor<ABasePawn>(SpawnPawn, GetActorLocation() + FVector(0, 0, 100), GetActorRotation());
