@@ -26,7 +26,7 @@ public:
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		int TeamID;
 
 	UPROPERTY(EditAnywhere)

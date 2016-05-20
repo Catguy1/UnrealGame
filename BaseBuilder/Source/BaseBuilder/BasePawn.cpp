@@ -52,8 +52,8 @@ void ABasePawn::Tick(float DeltaTime)
 
 void ABasePawn::Initialize(AActor *destination, int initFaction)
 {
-	Target = destination;
-
+	BaseTarget = destination;
+	Target = BaseTarget;
 	Faction = initFaction;
 }
 
