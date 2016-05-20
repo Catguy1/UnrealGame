@@ -66,14 +66,15 @@ void ABaseBuilding::Tick(float DeltaTime)
 
 void ABaseBuilding::Spawn()
 {
-	/*FActorSpawnParameters SpawnParameter;
-	SpawnParameter.Owner = this;
-	SpawnParameter.Instigator = Instigator;*/
-
-	ABasePawn *spawn = GetWorld()->SpawnActor<ABasePawn>(SpawnPawn, GetActorLocation() + FVector(100, 100, 100), GetActorRotation());
+	ABasePawn *spawn = GetWorld()->SpawnActor<ABasePawn>(SpawnPawn, GetActorLocation() + FVector(0, 0, 100), GetActorRotation());
 
 	ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
 
 	spawn->Initialize(controller->EnemyBase, 1);
+}
+
+void ABaseBuilding::SetFaction(int i)
+{
+	TeamID = i;
 }
 

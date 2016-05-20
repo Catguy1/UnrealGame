@@ -26,6 +26,14 @@ public:
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
+	UPROPERTY(VisibleAnywhere)
+		int TeamID;
+
+	UPROPERTY(EditAnywhere)
+		int Price;
+
+	void SetFaction(int i);
+
 private:
 	float Timer;
 	UPROPERTY(EditAnywhere)
@@ -35,5 +43,7 @@ private:
 		TSubclassOf<APawn> SpawnPawn;
 
 protected:
-	bool Spawning;
+	UPROPERTY(EditAnywhere)
+		bool Spawning;
+
 };

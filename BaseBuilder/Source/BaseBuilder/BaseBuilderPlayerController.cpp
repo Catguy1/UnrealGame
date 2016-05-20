@@ -10,6 +10,16 @@ ABaseBuilderPlayerController::ABaseBuilderPlayerController()
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
 }
 
+void ABaseBuilderPlayerController::ChangeSelection(int i)
+{
+	switch (i)
+	{
+	case 1:
+		SelectedBuilding = ABaseBuilding::StaticClass();
+		break;
+	}
+}
+
 void ABaseBuilderPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
@@ -25,15 +35,23 @@ void ABaseBuilderPlayerController::SetupInputComponent()
 
 void ABaseBuilderPlayerController::OnClick()
 {
-	//Getting the position of the mouse and spawning a building at that point
-	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+	UE_LOG(LogTemp, Warning, TEXT("Attempting to spawn a thing"));
 
-	if (Hit.GetActor() != nullptr)
+	if (SelectedBuilding != nullptr)
 	{
-		if (Hit.GetComponent()->ComponentHasTag("PlayerArea") && Hit.GetActor()->StaticClass() != ABaseBuilding::StaticClass())
+		//Getting the position of the mouse and spawning a building at that point
+		FHitResult Hit;
+		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+
+		if (Hit.GetActor() != nullptr)
 		{
-			GetWorld()->SpawnActor<ABaseBuilding>(Hit.ImpactPoint - FVector(0, 0, -50), FRotator(0));
+
+			if (Hit.GetComponent()->ComponentHasTag("PlayerArea"))// && Hit.GetActor()->StaticClass() != SelectedBuilding->GetClass())
+			{
+				ABaseBuilding *Spawn = Cast<ABaseBuilding>(GetWorld()->SpawnActor<AActor>(SelectedBuilding, Hit.ImpactPoint - FVector(0, 0, -50), FRotator(0)));
+
+				Spawn->SetFaction(1);
+			}
 		}
 	}
 }

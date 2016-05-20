@@ -48,6 +48,7 @@ float AStandardTower::TakeDamage(float Damage, struct FDamageEvent const& Damage
 	return 0;
 }
 
+
 void AStandardTower::Attack()
 {
 	if (Target != NULL)
