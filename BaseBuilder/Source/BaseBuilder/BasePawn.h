@@ -24,6 +24,8 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 		int Faction;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		float Health;
 private:
 	void SetNewMoveDestination(const AActor* DestActor);
 
@@ -36,8 +38,5 @@ private:
 
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
-
-	float Health;
-
 
 };
