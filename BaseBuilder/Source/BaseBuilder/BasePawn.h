@@ -26,6 +26,25 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		float Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float AttackSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Damage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float AttackTimer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool Firing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* Target;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* BaseTarget;
+
 private:
 	void SetNewMoveDestination(const AActor* DestActor);
 
@@ -33,10 +52,9 @@ private:
 
 	void OnDeath();
 
-	UPROPERTY(EditAnywhere)
-		AActor* Target;
 
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
+	virtual void Attack();
 };

@@ -29,8 +29,9 @@ ABasePawn::ABasePawn()
 	CubeMesh->BodyInstance.bLockXRotation = true;
 	CubeMesh->BodyInstance.bLockYRotation = true;
 
-	Health = 15;
-
+	Health = 25;
+	AttackSpeed = 0.5;
+	Damage = 5;
 
 	//MoveComponent = CreateDefaultSubobject<UPawnMovementComponent>(TEXT("MoveComponent"));
 
@@ -48,12 +49,17 @@ void ABasePawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	SetNewMoveDestination(Target);
+	AttackTimer -= DeltaTime;
+	if (Firing)
+	{
+		Attack();
+	}
 }
 
 void ABasePawn::Initialize(AActor *destination, int initFaction)
 {
-	Target = destination;
-
+	BaseTarget = destination;
+	Target = BaseTarget;
 	Faction = initFaction;
 }
 
@@ -104,4 +110,17 @@ void ABasePawn::OnDeath()
 {
 	Faction = 0;
 	GetWorld()->DestroyActor(this);
+}
+
+void ABasePawn::Attack()
+{
+	if (Target != NULL)
+	{
+		TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>(UDamageType::StaticClass());
+		FDamageEvent DamageEvent(ValidDamageTypeClass);
+		Target->TakeDamage(Damage,DamageEvent,this->Controller, this);
+
+		AttackTimer = AttackSpeed;
+		Firing = false;
+	}
 }

@@ -21,14 +21,36 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
+	void Spawn();
+
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		int TeamID;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Health;
 
 	UPROPERTY(EditAnywhere)
 		int Price;
 
 	void SetFaction(int i);
+
+private:
+	float Timer;
+	UPROPERTY(EditAnywhere)
+		float SpawnTime;
+
+	UPROPERTY(VisibleAnywhere)
+		TSubclassOf<APawn> SpawnPawn;
+
+	void OnDeath();
+
+	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, class AActor* DamageCauser) override;
+
+protected:
+	UPROPERTY(EditAnywhere)
+		bool Spawning;
+
 };
