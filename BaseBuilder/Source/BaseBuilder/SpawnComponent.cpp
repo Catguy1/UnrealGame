@@ -40,7 +40,7 @@ void USpawnComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (Timer < 0)
+	if (Timer <= 0)
 	{
 		Spawn();
 		Timer = SpawnTime;
@@ -57,11 +57,11 @@ void USpawnComponent::Spawn()
 {
 	if (SpawnPawn != nullptr)
 	{
-		ABasePawn *spawn = GetWorld()->SpawnActor<ABasePawn>(SpawnPawn->GetClass(), GetOwner()->GetActorLocation() + FVector(0, 0, 100), GetOwner()->GetActorRotation());
+		ABasePawn *spawn = GetOwner()->GetWorld()->SpawnActor<ABasePawn>(SpawnPawn, GetOwner()->GetActorLocation() + FVector(0, 0, 100), GetOwner()->GetActorRotation());
 
-		/*ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
+		ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
 
-		spawn->Initialize(controller->EnemyBase, 1);*/
+		spawn->Initialize(controller->EnemyBase, 1);
 	}
 }
 

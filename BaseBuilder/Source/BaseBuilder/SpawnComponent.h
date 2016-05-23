@@ -27,14 +27,11 @@ public:
 		float SpawnTime;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UBlueprint *SpawnPawn;
+		TSubclassOf<APawn> SpawnPawn;
 
 private:
 	float Timer;
 
 	void Spawn();
-
-	UPROPERTY(EditAnywhere)
-		bool Spawning;
 
 };
