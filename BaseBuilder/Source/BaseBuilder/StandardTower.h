@@ -5,9 +5,6 @@
 #include "BaseBuilding.h"
 #include "StandardTower.generated.h"
 
-/**
- *
- */
 UCLASS()
 class BASEBUILDER_API AStandardTower : public ABaseBuilding
 {
