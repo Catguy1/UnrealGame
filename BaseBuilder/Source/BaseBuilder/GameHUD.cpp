@@ -26,24 +26,26 @@ void AGameHUD::DrawHUD()
 void AGameHUD::DrawHealth()
 {
 	ABaseBuilderPlayerController * Player = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (Player->OwnBase != nullptr)
+	{
+		int Health = Cast<ABaseBuilding>(Player->OwnBase)->Health;
 
-	int Health = Player->Health;
+		FString Text = "Health: " + FString::SanitizeFloat(Health);
 
-	FString Text = "Health: " + FString::SanitizeFloat(Health);
+		FText SomeText = FText::FromString(Text);
 
-	FText SomeText = FText::FromString(Text);
+		float XPosition = Canvas->ClipX*0.85f;
+		float YPosition = Canvas->ClipY*0.1f;
 
-	float XPosition = Canvas->ClipX*0.85f;
-	float YPosition = Canvas->ClipY*0.1f;
+		FLinearColor TheFontColour = FLinearColor(0.0f, 0.0f, 0.0f);
+		FCanvasTextItem NewText(FVector2D(XPosition, YPosition), SomeText, Font, TheFontColour);
 
-	FLinearColor TheFontColour = FLinearColor(0.0f, 0.0f, 0.0f);
-	FCanvasTextItem NewText(FVector2D(XPosition, YPosition), SomeText, Font, TheFontColour);
+		//Text Scale
+		NewText.Scale.Set(1, 1);
 
-	//Text Scale
-	NewText.Scale.Set(1, 1);
-
-	//Draw
-	Canvas->DrawItem(NewText);
+		//Draw
+		Canvas->DrawItem(NewText);
+	}
 }
 
 void AGameHUD::DrawResources()
@@ -73,21 +75,25 @@ void AGameHUD::DrawSelect()
 {
 	ABaseBuilderPlayerController * Player = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
 
-	int Resources = Player->Money;
+	if (Player->SelectedBuilding != nullptr)
+	{
+		FString Description = Player->SelectedBuilding->GetDefaultObject<ABaseBuilding>()->Description;
 
-	FString Text = "Description: " + FString::SanitizeFloat(Resources);
+		FString Text = "Description: " + Description;
 
-	FText SomeText = FText::FromString(Text);
+		FText SomeText = FText::FromString(Text);
 
-	float XPosition = Canvas->ClipX *0.01;
-	float YPosition = Canvas->ClipY*0.85f;
+		float XPosition = Canvas->ClipX *0.01;
+		float YPosition = Canvas->ClipY*0.85f;
 
-	FLinearColor TheFontColour = FLinearColor(0.0f, 0.0f, 0.0f);
-	FCanvasTextItem NewText(FVector2D(XPosition, YPosition), SomeText, Font, TheFontColour);
+		FLinearColor TheFontColour = FLinearColor(0.0f, 0.0f, 0.0f);
+		FCanvasTextItem NewText(FVector2D(XPosition, YPosition), SomeText, Font, TheFontColour);
 
-	//Text Scale
-	NewText.Scale.Set(1, 1);
+		//Text Scale
+		NewText.Scale.Set(1, 1);
 
-	//Draw
-	Canvas->DrawItem(NewText);
+		//Draw
+		Canvas->DrawItem(NewText);
+	}
+
 }

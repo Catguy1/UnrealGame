@@ -30,6 +30,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Health;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Description;
+
 	UPROPERTY(EditAnywhere)
 		int Price;
 

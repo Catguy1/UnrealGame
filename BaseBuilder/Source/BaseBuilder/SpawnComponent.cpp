@@ -61,7 +61,7 @@ void USpawnComponent::Spawn()
 
 		ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
 
-		spawn->Initialize(controller->EnemyBase, 1);
+		spawn->Initialize(controller->EnemyBase, Cast<ABaseBuilding>(GetOwner())->TeamID);
 	}
 }
 
