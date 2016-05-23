@@ -23,6 +23,7 @@ ABaseBuilding::ABaseBuilding()
 		CubeMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
 
 		RootComponent = CubeMesh;
+		Description = "Splany thing Here!";
 	}
 }
 
