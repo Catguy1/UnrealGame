@@ -21,8 +21,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
-	void Spawn();
-
 	UPROPERTY(Category = Meshes, VisibleAnywhere)
 		UStaticMeshComponent *CubeMesh;
 
@@ -33,17 +31,4 @@ public:
 		int Price;
 
 	void SetFaction(int i);
-
-private:
-	float Timer;
-	UPROPERTY(EditAnywhere)
-		float SpawnTime;
-
-	UPROPERTY(VisibleAnywhere)
-		TSubclassOf<APawn> SpawnPawn;
-
-protected:
-	UPROPERTY(EditAnywhere)
-		bool Spawning;
-
 };

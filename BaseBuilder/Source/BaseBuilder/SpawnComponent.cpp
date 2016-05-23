@@ -12,6 +12,13 @@ USpawnComponent::USpawnComponent()
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
+	//static ConstructorHelpers::FClassFinder<ABasePawn>ObjectToSpawn(TEXT("Blueprint'/Game/TopDownCPP/Blueprints/BPBasePawn'"));
+
+	//if (ObjectToSpawn.Class)
+	//{
+	//	SpawnPawn = (UClass*)ObjectToSpawn.Class;
+	//}
+
 	// ...
 }
 
@@ -21,16 +28,40 @@ void USpawnComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Timer = SpawnTime;
+
 	// ...
-	
+
 }
 
 
 // Called every frame
-void USpawnComponent::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
+void USpawnComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if (Timer < 0)
+	{
+		Spawn();
+		Timer = SpawnTime;
+	}
+	else
+	{
+		Timer -= DeltaTime;
+	}
 
 	// ...
+}
+
+void USpawnComponent::Spawn()
+{
+	if (SpawnPawn != nullptr)
+	{
+		ABasePawn *spawn = GetWorld()->SpawnActor<ABasePawn>(SpawnPawn->GetClass(), GetOwner()->GetActorLocation() + FVector(0, 0, 100), GetOwner()->GetActorRotation());
+
+		/*ABaseBuilderPlayerController *controller = Cast<ABaseBuilderPlayerController>(GetWorld()->GetFirstPlayerController());
+
+		spawn->Initialize(controller->EnemyBase, 1);*/
+	}
 }
 

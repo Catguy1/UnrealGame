@@ -12,8 +12,6 @@ AStandardTower::AStandardTower()
 	Health = 200;
 	AttackSpeed = 0.5;
 	Damage = 5;
-
-	Spawning = false;
 }
 
 // Called when the game starts or when spawned
