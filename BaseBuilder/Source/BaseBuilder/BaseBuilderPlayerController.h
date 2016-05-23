@@ -30,9 +30,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TSubclassOf<AActor> SelectedBuilding;
 
-	UFUNCTION(BlueprintCallable, Category = "Selection")
-		void ChangeSelection(int i);
-
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
