@@ -10,21 +10,9 @@ ABaseBuilding::ABaseBuilding()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	CubeMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("Box"));
 
-	static ConstructorHelpers::FObjectFinder <UStaticMesh>StaticMesh(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'"));
+	Description = "Splany thing Here!";
 
-	if (StaticMesh.Object)
-	{
-		CubeMesh->SetStaticMesh(StaticMesh.Object);
-
-		CubeMesh->bHiddenInGame = false;
-
-		CubeMesh->SetCollisionObjectType(ECollisionChannel::ECC_Visibility);
-
-		RootComponent = CubeMesh;
-		Description = "Splany thing Here!";
-	}
 }
 
 // Called when the game starts or when spawned

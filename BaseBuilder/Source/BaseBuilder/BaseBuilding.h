@@ -21,9 +21,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
-	UPROPERTY(Category = Meshes, VisibleAnywhere)
-		UStaticMeshComponent *CubeMesh;
-
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		int TeamID;
 
